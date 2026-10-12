@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>MAINA RATUL</title>
+<style>
+:root{--bg:#000;--fg:#fff;--red:#e50914;--card:#222;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:#000;color:#fff;font-family:"Helvetica Neue",Arial,sans-serif;overflow-x:hidden}
+#intro{position:fixed;inset:0;background:#000;display:flex;align-items:center;justify-content:center;z-index:10;transition:opacity .8s}
+#intro.hide{opacity:0;pointer-events:none}
+.logo{font-family:Impact,"Arial Narrow",sans-serif;font-weight:900;color:var(--red);font-size:clamp(34px,11vw,90px);letter-spacing:.06em;white-space:nowrap;text-shadow:0 0 30px rgba(229,9,20,.6);opacity:0;transform:scale(.6);animation:zoom 3.2s ease-in forwards}
+@keyframes zoom{0%{opacity:0;transform:scale(.6);filter:blur(6px)}25%{opacity:1;transform:scale(1);filter:blur(0)}70%{opacity:1;transform:scale(1.15)}100%{opacity:0;transform:scale(4);filter:blur(10px)}}
+.glow{position:absolute;width:140%;height:3px;background:linear-gradient(90deg,transparent,var(--red),transparent);top:50%;opacity:0;animation:sweep 3.2s ease-in forwards}
+@keyframes sweep{30%{opacity:0}50%{opacity:.9}100%{opacity:0}}
+#app{opacity:0;transition:opacity 1s}
+#app.show{opacity:1}
+nav{display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:linear-gradient(#000,transparent);position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:2}
+nav b{font-family:Impact,"Arial Narrow",sans-serif;color:var(--red);font-size:22px;letter-spacing:.05em}
+nav span{font-size:13px;margin-left:12px;color:#ddd}
+.hero{height:62vh;min-height:360px;background:linear-gradient(0deg,#000 5%,transparent 60%),radial-gradient(circle at 70% 30%,#b1060f,#2a0306 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:20px 16px}
+.hero h1{margin:0 0 8px;font-size:34px}
+.hero p{margin:0 0 14px;color:#ddd;font-size:14px;max-width:420px}
+.btns{display:flex;gap:10px}
+.btns button{border:0;border-radius:4px;padding:10px 20px;font-size:15px;font-weight:700;cursor:pointer}
+.play{background:#fff;color:#000}.info{background:rgba(109,109,110,.7);color:#fff}
+h2{font-size:17px;margin:20px 16px 8px}
+.row{display:flex;gap:8px;overflow-x:auto;padding:0 16px 4px;scrollbar-width:none}
+.row::-webkit-scrollbar{display:none}
+.c{flex:0 0 120px;height:170px;border-radius:4px;display:flex;align-items:flex-end;padding:8px;font-weight:700;font-size:13px}
+.replay{display:block;margin:28px auto;background:none;border:1px solid #555;color:#aaa;border-radius:20px;padding:8px 18px}
+</style>
+</head>
+<body>
+<div id="intro"><div class="glow"></div><div class="logo">MAINA RATUL</div></div>
+<div id="app">
+<nav><div><b>MAINA RATUL</b><span>Movies</span><span>Shows</span></div></nav>
+<div class="hero"><h1>MAINA RATUL</h1><p>Aapki apni duniya. Dekhiye, sunaiye aur jee bhar ke enjoy kijiye.</p><div class="btns"><button class="play">▶ Play</button><button class="info">ⓘ More Info</button></div></div>
+<h2>Trending Now</h2><div class="row" id="r1"></div>
+<h2>Popular on MAINA RATUL</h2><div class="row" id="r2"></div>
+<h2>Continue Watching</h2><div class="row" id="r3"></div>
+<button class="replay" onclick="start()">↻ Intro dobara dekhein</button>
+</div>
+<script>
+var cols=["#b1060f","#1d4e89","#2d6a4f","#7b2cbf","#c9710a","#0b7285","#9d174d","#4b5563"];
+["r1","r2","r3"].forEach(function(id,k){var h="";for(var i=0;i<8;i++){h+='<div class="c" style="background:linear-gradient(0deg,#000a,transparent),'+cols[(i+k*3)%8]+'">Title '+(i+1+k*8)+'</div>'}document.getElementById(id).innerHTML=h});
+function start(){var a=document.getElementById("app"),n=document.getElementById("intro");a.classList.remove("show");var l=n.querySelector(".logo"),g=n.querySelector(".glow");l.style.animation="none";g.style.animation="none";void l.offsetWidth;l.style.animation="";g.style.animation="";n.classList.remove("hide");window.scrollTo(0,0);setTimeout(function(){n.classList.add("hide");a.classList.add("show")},3100)}
+start();
+</script>
+</body>
+</html>
